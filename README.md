@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # Weather-Dashboard-Updater
 Gathers data about the weather from OpenWeatherMap API
 
