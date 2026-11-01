@@ -10,7 +10,7 @@ https://home.openweathermap.org/api_keys
 # How to run this script?:
 ```
 Go sign up for openweathermap to obtain an API key
-git clone https://github.com/CY83R-3X71NC710N/Weather-Dashboard-Updater.git
+git clone https://github.com/Epsilon0xCell/Weather-Dashboard-Updater.git
 rm -rf weatherupdate.csv # Remove the existing .csv as this includes previous data.
 API_KEY = Insert_API_Key
 pip install requests pandas
