@@ -1,6 +1,11 @@
-![Banner](banner.png)
+![Intro scenery: a glass rain gauge beaded with droplets and a brass barometer in close up on a rooftop mast after a shower, the brass needle steady on its new reading, an orange windsock soft in the background and a city skyline at dawn behind](intro-banner.png)
 
 # Weather-Dashboard-Updater
+
+![Wordmark banner: a rooftop weather station at dawn over a city skyline, an orange windsock stretched full by the wind, spinning anemometer cups, a rain gauge beaded with last night's rain and a brass barometer mounted on the mast](banner.png)
+
+<p align="center"><img src="logo.png" alt="Weather-Dashboard-Updater logo: a flat illustration of a weather station mast on a rooftop, set inside a white frame on pale blue: spinning anemometer cups above, an orange windsock streaming, a brass barometer dial and a glass rain gauge mounted on grey steel" width="200"></p>
+
 Gathers data about the weather from OpenWeatherMap API
 
 ```
