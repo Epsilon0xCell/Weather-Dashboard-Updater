@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather-Dashboard-Updater: The Rooftop Station</title>
+<meta name="description" content="A small Python script that pulls current weather from the OpenWeatherMap API and appends it as a structured row to weatherupdate.csv, ready for a dashboard.">
+<style>
+@font-face{font-family:'Tektur';src:url('fonts/Tektur-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Tektur';src:url('fonts/Tektur-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Tektur';src:url('fonts/Tektur-600.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Tektur';src:url('fonts/Tektur-700.woff2') format('woff2');font-weight:700}
+@font-face{font-family:'Onest';src:url('fonts/Onest-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Onest';src:url('fonts/Onest-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Onest';src:url('fonts/Onest-600.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Onest';src:url('fonts/Onest-700.woff2') format('woff2');font-weight:700}
+:root{--sky:#cfe3f2;--skydk:#9dbfd9;--brass:#a97e2f;--brassdk:#7d5c1e;--slate:#55606a;--slatedk:#39424b;--sock:#e8641b;--paper:#f8fbfd;--line:#b9cfdf;--ink:#2e3840}
+*{box-sizing:border-box} body{margin:0;background:var(--sky);color:var(--ink);font-family:'Onest',sans-serif;line-height:1.65}
+h1,h2{font-family:'Tektur',sans-serif;color:var(--slatedk);font-weight:600}
+.hero{background:linear-gradient(165deg,#e8f2f9 0%,var(--sky) 55%,var(--skydk) 100%);padding:2.2rem 6vw 1.8rem;border-bottom:6px solid var(--slate)}
+.hero .inner{max-width:1020px;margin:0 auto}
+.hero img.wide{width:100%;height:auto;display:block;border:5px solid var(--slate);border-radius:4px;box-shadow:0 4px 18px rgba(40,60,80,.3)}
+.hero .row{display:flex;gap:1.1rem;align-items:flex-start;margin-top:1.2rem}
+.hero .row img{width:92px;height:92px;object-fit:cover;border-radius:6px;border:3px solid var(--slate);background:var(--paper)}
+.hero h1{margin:.1rem 0 .3rem;font-size:2.5rem}
+.hero p{max-width:44rem}
+main{padding:0 6vw 3rem;max-width:1020px;margin:0 auto}
+.card{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--brass);border-radius:6px;padding:1.2rem 1.5rem;margin:1.6rem 0;box-shadow:0 2px 8px rgba(50,80,110,.14)}
+.card.sock{border-left-color:var(--sock)}
+.card h2{margin:.1rem 0 .5rem;font-size:1.7rem}
+.card p{margin:.4rem 0}
+.strip{background:var(--slatedk);color:#eef5fa;padding:1rem 1.2rem;overflow-x:auto;font-family:ui-monospace,Menlo,monospace;border-radius:4px;border-left:6px solid var(--sock)}
+.btn{display:inline-block;background:var(--brass);color:#fffaf0;font-family:'Onest',sans-serif;font-weight:700;text-decoration:none;padding:.55rem 1.1rem;border-radius:999px;margin:.3rem .4rem .3rem 0}
+.btn:hover{background:var(--sock);color:#fff}.btn:active{transform:translateY(2px)}
+.btn:focus-visible{outline:2px dashed var(--brassdk);outline-offset:3px}
+a{color:var(--brassdk);font-weight:700}
+.cols{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+.cols span{border:1px solid var(--slate);border-radius:3px;padding:.1rem .6rem;font-family:ui-monospace,Menlo,monospace;font-size:.88rem;background:#fff}
+table{border-collapse:collapse}td{padding:.2rem .9rem .2rem 0;vertical-align:top}
+td:first-child{font-weight:700;color:var(--slatedk);white-space:nowrap}
+.small{font-size:.92rem}
+footer{padding:0 6vw 2.5rem;max-width:1020px;margin:0 auto;color:#5d7182}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="inner">
+<img class="wide" src="assets/intro-banner.png" alt="A glass rain gauge beaded with droplets and a brass barometer close up on a rooftop mast after a shower, the brass needle steady on its new reading and an orange windsock hanging soft behind">
+<div class="row"><img src="assets/logo.png" alt="Weather-Dashboard-Updater logo: a flat illustration of a weather station mast on a rooftop inside a white frame, spinning anemometer cups above, an orange windsock streaming to the left, a brass barometer dial and a glass rain gauge mounted on the grey steel"><div><h1>Weather-Dashboard-Updater</h1><p>Gathers data about the weather from the OpenWeatherMap API. One small Python script, <code>get_weather_data.py</code>, takes the reading and writes it down: every run appends one structured row to <code>weatherupdate.csv</code>, the record a dashboard reads.</p><p><a class="btn" href="https://github.com/Epsilon0xCell/Weather-Dashboard-Updater">Open the repo</a> <a class="btn" href="#run">How to run it</a></p></div></div>
+</div>
+</header>
+<main>
+<section class="card" id="run"><h2>How to run this script</h2><div class="strip">Go sign up for openweathermap to obtain an API key<br>git clone https://github.com/Epsilon0xCell/Weather-Dashboard-Updater.git<br>rm -rf weatherupdate.csv # Remove the existing .csv as this includes previous data.<br>pip install requests pandas<br>python3 get_weather_data.py</div><p>Get a key at <a href="https://home.openweathermap.org/api_keys">home.openweathermap.org/api_keys</a>. The script reads the key from the <code>API_KEY</code> environment variable, and the place and country are set in the script itself: Milwaukee, US. The README's run block shows a redacted placeholder where your own key goes; leave the placeholder exactly as written there and keep your real key in the environment. The file is output to a .csv in the current working directory, letting you view the weather data in .csv format.</p></section>
+<section class="card sock"><h2>What a run does</h2><table>
+<tr><td>Ask</td><td>The script builds the OpenWeatherMap current weather URL for its set city and country and sends the request.</td></tr>
+<tr><td>Flatten</td><td>The JSON answer is flattened into one row: nested groups become single columns named for where they came from.</td></tr>
+<tr><td>Validate</td><td>If <code>weatherupdate.csv</code> already exists, <code>validate_csv_structure</code> checks it first and removes rows whose field count disagrees with the header.</td></tr>
+<tr><td>Append</td><td>The new row is appended (the header is written only when the file is new), and the file is read back and rewritten through pandas for consistent formatting.</td></tr>
+</table></section>
+<section class="card"><h2>The record: 27 columns</h2><p>The CSV file contains the following columns, well-organized and formatted for easy readability:</p><div class="cols"><span>coord_lon</span><span>coord_lat</span><span>weather_id</span><span>weather_main</span><span>weather_description</span><span>weather_icon</span><span>base</span><span>main_temp</span><span>main_feels_like</span><span>main_temp_min</span><span>main_temp_max</span><span>main_pressure</span><span>main_humidity</span><span>visibility</span><span>wind_speed</span><span>wind_deg</span><span>clouds_all</span><span>dt</span><span>sys_type</span><span>sys_id</span><span>sys_country</span><span>sys_sunrise</span><span>sys_sunset</span><span>timezone</span><span>id</span><span>name</span><span>cod</span></div><p class="small">Temperatures carry the API units (default Kelvin, metric Celsius, imperial Fahrenheit), pressure is hPa, humidity and cloudiness are percents, visibility is metres, and the times are unix UTC. The committed <code>weatherupdate.csv</code> in the repo is the accumulated output of past runs, about 7.3 MB of readings; the run instructions remove it first only when you want a fresh record.</p></section>
+<section class="card"><h2>The files</h2><p class="small"><code>get_weather_data.py</code>, the whole script. <code>weatherupdate.csv</code>, the accumulated output data. <code>requirements.txt</code>, the two packages (requests and pandas). <code>LICENSE</code>, GPL-3.0. Column by column notes are in the <a href="https://github.com/Epsilon0xCell/Weather-Dashboard-Updater">repo README</a>.</p></section>
+</main>
+<footer><p>The station reads the sky once per run and files the reading; the record is the whole point.</p></footer>
+</body>
+</html>
