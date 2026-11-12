@@ -8,21 +8,20 @@
 
 Gathers data about the weather from OpenWeatherMap API
 
-```
-https://home.openweathermap.org/api_keys
-```
+[home.openweathermap.org/api_keys](https://home.openweathermap.org/api_keys)
 
-# How to run this script?:
+# How to run this script?
+Go sign up for OpenWeatherMap to obtain an API key, then run:
+
 ```
-Go sign up for openweathermap to obtain an API key
 git clone https://github.com/Epsilon0xCell/Weather-Dashboard-Updater.git
 rm -rf weatherupdate.csv # Remove the existing .csv as this includes previous data.
 API_KEY = Insert_API_Key
 pip install requests pandas
 python3 get_weather_data.py
-
-The file will be outputed to a .csv in the current working directory allowing you to view the weather data in .csv format
 ```
+
+The file will be output to a .csv in the current working directory, allowing you to view the weather data in .csv format.
 
 # Improving the structure and appearance of the output
 The weather data is now saved in a CSV file (`weatherupdate.csv`) with improved structure and readability. The script `get_weather_data.py` extracts weather data from the OpenWeatherMap API and saves it to a CSV file, with the data well-organized and formatted for easy readability.
